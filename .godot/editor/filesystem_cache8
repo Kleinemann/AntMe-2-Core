@@ -1,0 +1,12 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1695631240
+0206 059x2 glc01.png::CompressedTexture2D::1546980965180401818::1695626475::1695626544::1::::<><>::
+Ant.cs::CSharpScript::-1::1695493462::0::1::::<><>::
+ant.tscn::PackedScene::6851351818188050426::1695631240::0::1::::<><>::res://Ant.cs<>uid://cc7pcdt120kaj::::res://ANT_BLK.OBJ
+ANT_BLK.OBJ::Mesh::4980193657411217065::1695493462::1695493462::1::::<><>::
+ant_me!2.tscn::PackedScene::5733996168222687575::1695631240::0::1::::<><>::res://GameManager.cs<>uid://ccvyw405cik6v::::res://level_base.tscn
+GameManager.cs::CSharpScript::-1::1695493563::0::1::::<><>::
+icon.svg::CompressedTexture2D::2426449680786551817::1695493462::1695493462::1::::<><>::
+level_base.tscn::PackedScene::4958069045953152059::1695631240::0::1::::<><>::uid://wbmsymb66ghm::::res://0206 059x2 glc01.png
+::res://Properties/::1695493464
+launchSettings.json::JSON::-1::1695493464::0::1::::<><>::

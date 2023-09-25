@@ -1,0 +1,10 @@
+<Project Sdk="Godot.NET.Sdk/4.1.1">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>AntMe2</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AntMe!2_Lib\AntMe!2_Lib.csproj" />
+  </ItemGroup>
+</Project>

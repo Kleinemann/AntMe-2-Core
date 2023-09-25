@@ -1,0 +1,6 @@
+res://ant_me!2.tscn
+res://ant.tscn
+res://Ant.cs
+res://GameManager.cs
+res://level_base.tscn
+res://Materials/mat_color_red.tres
