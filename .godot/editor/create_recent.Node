@@ -1,8 +1,9 @@
+RigidBody3D
+Area3D
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
 WorldEnvironment
-RigidBody3D
 Node
 DirectionalLight3D
 GridMap

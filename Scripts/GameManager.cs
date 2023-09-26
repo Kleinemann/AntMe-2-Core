@@ -1,13 +1,10 @@
 using AntMe_2_Lib.Definitions;
+using AntMe_2_Lib.GameObject;
 using AntMe_2_Lib.Helper.ExtensionMethods;
 using AntMe_2_Lib.Simulator;
 using Godot;
-using Godot.Collections;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Reflection;
 
 public partial class GameManager : Node
 {
@@ -17,7 +14,7 @@ public partial class GameManager : Node
     public enum GameStateEnum { NONE, RUNNING, PAUSE, END };
 
 	public static GameStateEnum GameState = GameStateEnum.NONE;
-	List<AntSimulator> AntSimulatorList = new List<AntSimulator>();
+    List<Ant> Ants = new List<Ant>();
 
 	public List<BaseMaterial3D> Colors = new List<BaseMaterial3D>()
 	{
@@ -32,14 +29,15 @@ public partial class GameManager : Node
 	int RoundCounter = 1;
 
     //List<Ant> Ants = new List<Ant>();
-    System.Collections.Generic.Dictionary<Guid, BaseMaterial3D> PlayerColor = new System.Collections.Generic.Dictionary<Guid, BaseMaterial3D>();
+    Dictionary<Guid, BaseMaterial3D> PlayerColor = new Dictionary<Guid, BaseMaterial3D>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		PrintDebug("Starte Game");
- 
-		ColonyManager.LoadingUserAntsByDll();
+
+        //TODO: Use Only selectet COlonys
+        ColonyManager.LoadingUserAntsByDll();
  
 		PrintDebug("Alles geladen");
 
@@ -49,23 +47,25 @@ public partial class GameManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (GameState == GameStateEnum.RUNNING
-			&& (LastUpdate + (TimeSpanSecond / GameSettings.RoundSpeed) <= DateTime.Now))
+		if (GameState == GameStateEnum.RUNNING)
 		{
-			RoundCounter++;
-			PrintDebug($"GAME {GameState} ROUND {RoundCounter}");
-			LastUpdate = DateTime.Now;
+			UpdateAnts(delta);
 
-			foreach(PlayerColony colony in ColonyManager.Colonys.Values)
+			if (LastUpdate + (TimeSpanSecond / GameSettings.RoundSpeed) <= DateTime.Now)
 			{
-				BornAnt(colony);
-				colony.DoTicks();
+				RoundCounter++;
+				PrintDebug($"GAME {GameState} ROUND {RoundCounter}");
+				LastUpdate = DateTime.Now;
+
+				foreach (PlayerColony colony in ColonyManager.Colonys.Values)
+				{
+					BornAnt(colony);
+					colony.DoTicks();
+				}
+
+				if (RoundCounter >= GameSettings.Rounds)
+					GameState = GameStateEnum.END;
 			}
-
-			if (RoundCounter >= GameSettings.Rounds)
-				GameState = GameStateEnum.END;
-
-			UpdateAnts();
 		}
 
 		if(GameState == GameStateEnum.END)
@@ -77,25 +77,30 @@ public partial class GameManager : Node
 
 
 
-    void UpdateAnts()
+    void UpdateAnts(double delta)
     {
-
+		foreach(Ant ant in Ants)
+		{
+			ant.Update(delta);
+		}
     }
 
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        base._UnhandledInput(@event);
+
         Camera3D camera = GetParent().GetNode<Camera3D>("Camera3D");
         Vector3 cameraPos = camera.Position;
 
-        base._UnhandledInput(@event);
+		/*
 		if(@event is InputEventMouseMotion)
 		{
 			InputEventMouseMotion inputEventMouseMotion = (InputEventMouseMotion) @event;
 
             camera.Position +=  (new Vector3(inputEventMouseMotion.Relative.X, 0, inputEventMouseMotion.Relative.Y) * 0.1f);
         }
-
+		*/
 		if(@event is InputEventMouseButton)
 		{
 			InputEventMouseButton inputEventMouseButton = (InputEventMouseButton) @event;
@@ -117,9 +122,28 @@ public partial class GameManager : Node
 		}
 
 
-        if (@event is InputEventKey eventKey)
-            if (eventKey.Pressed && eventKey.Keycode == Key.Escape)
-                GetTree().Quit();
+		if (@event is InputEventKey eventKey)
+			if (eventKey.Pressed)
+			{ 
+				switch(eventKey.Keycode)
+				{
+					case Key.Escape:
+                        GetTree().Quit();
+						break;
+					case Key.A:
+                        camera.Position += new Vector3(-1, 0, 0);
+                        break;
+                    case Key.D:
+                        camera.Position += new Vector3(1, 0, 0);
+                        break;
+                    case Key.W:
+                        camera.Position += new Vector3(0, 0, -1);
+                        break;
+					case Key.S:
+                        camera.Position += new Vector3(0, 0, 1);
+                        break;
+                }
+            }
     }
 
 
@@ -135,6 +159,8 @@ public partial class GameManager : Node
         Ant ant = ps.Instantiate() as Ant;
 
 		ant.SIM = sim;
+
+		Ants.Add(ant);
 
 		//Material
 		MeshInstance3D mesh = ant.GetNode("MeshInstance3D") as MeshInstance3D;

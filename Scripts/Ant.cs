@@ -1,5 +1,6 @@
 using AntMe_2_Lib.Simulator;
 using Godot;
+using Godot.Collections;
 using System;
 using static AntMe_2_Lib.GameObject.InsectCore;
 
@@ -10,16 +11,19 @@ public partial class Ant: RigidBody3D
 	public override void _Ready()
 	{
 		GD.Print("ERSCHIENEN");
-	}
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
+
     }
 
     internal void Update(double delta)
     {
-        var state = SIM.AntObject.State;
+        InsectStateEnum state = (InsectStateEnum)SIM.AntObject.State;
+
+        //InsectStateEnum b = (InsectStateEnum)state;
 
         switch (state)
         {
@@ -33,12 +37,11 @@ public partial class Ant: RigidBody3D
         }
     }
 
-
     public void MoveForward(double delta)
 	{        
         Vector3 v3 = Vector3.Back;
         v3 = v3.Rotated(Vector3.Up, Rotation.Y);
 
-        ApplyForce(v3 * (float)delta * 1000 * SIM.Speed);
+        ApplyForce(v3 * (float)delta * SIM.Speed);
     }
 }
