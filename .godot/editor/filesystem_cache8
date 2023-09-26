@@ -1,12 +1,21 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1695631240
-0206 059x2 glc01.png::CompressedTexture2D::1546980965180401818::1695626475::1695626544::1::::<><>::
-Ant.cs::CSharpScript::-1::1695493462::0::1::::<><>::
-ant.tscn::PackedScene::6851351818188050426::1695631240::0::1::::<><>::res://Ant.cs<>uid://cc7pcdt120kaj::::res://ANT_BLK.OBJ
-ANT_BLK.OBJ::Mesh::4980193657411217065::1695493462::1695493462::1::::<><>::
-ant_me!2.tscn::PackedScene::5733996168222687575::1695631240::0::1::::<><>::res://GameManager.cs<>uid://ccvyw405cik6v::::res://level_base.tscn
-GameManager.cs::CSharpScript::-1::1695493563::0::1::::<><>::
-icon.svg::CompressedTexture2D::2426449680786551817::1695493462::1695493462::1::::<><>::
-level_base.tscn::PackedScene::4958069045953152059::1695631240::0::1::::<><>::uid://wbmsymb66ghm::::res://0206 059x2 glc01.png
-::res://Properties/::1695493464
-launchSettings.json::JSON::-1::1695493464::0::1::::<><>::
+::res://::1695717329
+0206 059x2 glc01.png::CompressedTexture2D::1546980965180401818::1695711975::1695711975::1::::<><>::
+icon.svg::CompressedTexture2D::2426449680786551817::1695711975::1695717182::1::::<><>::
+::res://Materials/::1695712050
+mat_color_black.tres::StandardMaterial3D::6333693573294492316::1695711975::0::1::::<><>::
+mat_color_blue.tres::StandardMaterial3D::3462833671198665932::1695711975::0::1::::<><>::
+mat_color_red.tres::StandardMaterial3D::766823430959868966::1695712050::0::1::::<><>::
+mat_color_yellow.tres::StandardMaterial3D::1570252885788377173::1695711975::0::1::::<><>::
+::res://Properties/::1695711975
+launchSettings.json::JSON::-1::1695711975::0::1::::<><>::
+::res://Scripts/::1695717191
+Ant.cs::CSharpScript::-1::1695711975::0::1::::<><>::
+GameManager.cs::CSharpScript::-1::1695717191::0::1::::<><>::
+::res://Scripts/Helper/::1695711975
+GameExtensionMethods.cs::CSharpScript::-1::1695711975::0::1::::<><>::
+::res://Szenes/::1695717755
+ant.tscn::PackedScene::6851351818188050426::1695717092::0::1::::<><>::res://Scripts/Ant.cs<>uid://cc7pcdt120kaj
+ant_me!2.tscn::PackedScene::5733996168222687575::1695717129::0::1::::<><>::res://Scripts/GameManager.cs<>uid://ccvyw405cik6v
+level_base.tscn::PackedScene::4958069045953152059::1695717033::0::1::::<><>::uid://wbmsymb66ghm
+::res://Szenes/Models/::1695717755

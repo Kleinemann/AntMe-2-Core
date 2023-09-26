@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4u307swoq0la"]
 
-[ext_resource type="Script" path="res://Ant.cs" id="1_dhu65"]
-[ext_resource type="ArrayMesh" uid="uid://cc7pcdt120kaj" path="res://ANT_BLK.OBJ" id="2_mrxav"]
-[ext_resource type="Material" uid="uid://k6pp8f6an56i" path="res://Materials/mat_color_red.tres" id="3_a2wf1"]
+[ext_resource type="Script" path="res://Scripts/Ant.cs" id="1_bd70d"]
+[ext_resource type="ArrayMesh" uid="uid://cc7pcdt120kaj" path="res://ANT_BLK.OBJ" id="2_0f8y8"]
+[ext_resource type="Material" uid="uid://k6pp8f6an56i" path="res://Materials/mat_color_red.tres" id="3_c2yos"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d2nf6"]
 points = PackedVector3Array(-0.00266152, 0.00283308, -0.00129524, 0.0043, 0.00024292, -0.00145549, 0.0043, -8.09524e-05, -0.00145549, 0.000575652, 0.00315695, 0.00518095, -0.00379462, 8.09841e-05, 0.00194235, -0.00379462, -8.09524e-05, -0.00404698, 0.00235635, 0.00283308, -0.00275175, 0.00381367, 8.09841e-05, 0.00194235, 0.00025227, 0.00186228, -0.00518095, -0.000718715, 0.00412857, 0.00275175, 0.00381367, -8.09524e-05, -0.00404698, 0.00251846, 0.00283308, 0.00113295, -0.0023373, 0.00283308, -0.00275175, 0.000737762, 0.00412857, 0.00210463, -0.000556604, 0.00299502, 0.00518095, -7.11117e-05, 0.00283308, -0.0038847, -0.00428095, -8.09524e-05, -0.00145549, -0.00249941, 0.00283308, 0.00113295, -0.00428095, 0.00024292, -0.00161879, -0.000394493, 0.00202381, -0.00501867, 0.00284268, 0.00267073, -0.00113295, -0.000556604, 0.00412857, 0.00194235, -0.000233222, 0.00153841, -0.00518095, -0.000556604, 0.00331889, 0.00501867, -0.00379462, 0.000404857, 0.00178006, 0.00381367, 0.000404857, 0.00178006, 0.000737762, 0.00412857, 0.00275175, -0.00395673, 8.09841e-05, -0.0038847, 0.00381367, 8.09841e-05, -0.00404698, 0.000413541, 0.00234727, -0.00469511, 0.000575652, 0.00331889, 0.00501867, -0.00282364, 0.00267073, -0.00129524)
 
 [node name="Ant" type="RigidBody3D"]
 lock_rotation = true
-script = ExtResource("1_dhu65")
+script = ExtResource("1_bd70d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-mesh = ExtResource("2_mrxav")
-surface_material_override/0 = ExtResource("3_a2wf1")
+mesh = ExtResource("2_0f8y8")
+surface_material_override/0 = ExtResource("3_c2yos")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)

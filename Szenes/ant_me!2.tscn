@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnxucxqwbsc8n"]
 
-[ext_resource type="Script" path="res://GameManager.cs" id="1_8hcel"]
-[ext_resource type="PackedScene" uid="uid://ccvyw405cik6v" path="res://level_base.tscn" id="2_8y8yv"]
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_v41oq"]
+[ext_resource type="PackedScene" uid="uid://ccvyw405cik6v" path="res://Szenes/Models/level_base.tscn" id="2_8y8yv"]
 
 [node name="AntMe!2" type="Node3D"]
 
 [node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_8hcel")
+script = ExtResource("1_v41oq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 20)

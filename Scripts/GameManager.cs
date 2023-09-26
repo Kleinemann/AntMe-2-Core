@@ -39,7 +39,6 @@ public partial class GameManager : Node
 	{
 		PrintDebug("Starte Game");
  
-		//LoadingUserAntsByDll();
 		ColonyManager.LoadingUserAntsByDll();
  
 		PrintDebug("Alles geladen");
@@ -60,11 +59,13 @@ public partial class GameManager : Node
 			foreach(PlayerColony colony in ColonyManager.Colonys.Values)
 			{
 				BornAnt(colony);
-				colony.DoTick();
+				colony.DoTicks();
 			}
 
 			if (RoundCounter >= GameSettings.Rounds)
 				GameState = GameStateEnum.END;
+
+			UpdateAnts();
 		}
 
 		if(GameState == GameStateEnum.END)
@@ -75,7 +76,54 @@ public partial class GameManager : Node
 	}
 
 
-	void BornAnt(PlayerColony colony)
+
+    void UpdateAnts()
+    {
+
+    }
+
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        Camera3D camera = GetParent().GetNode<Camera3D>("Camera3D");
+        Vector3 cameraPos = camera.Position;
+
+        base._UnhandledInput(@event);
+		if(@event is InputEventMouseMotion)
+		{
+			InputEventMouseMotion inputEventMouseMotion = (InputEventMouseMotion) @event;
+
+            camera.Position +=  (new Vector3(inputEventMouseMotion.Relative.X, 0, inputEventMouseMotion.Relative.Y) * 0.1f);
+        }
+
+		if(@event is InputEventMouseButton)
+		{
+			InputEventMouseButton inputEventMouseButton = (InputEventMouseButton) @event;
+			if(inputEventMouseButton.IsPressed())
+			{
+				switch(inputEventMouseButton.ButtonIndex)
+				{
+					case MouseButton.WheelUp:
+						camera.Position += new Vector3(0, -1, -1);
+                        break;
+
+                    case MouseButton.WheelDown:
+                        camera.Position += new Vector3(0, 1, 1);
+						break;
+
+                }
+
+            }
+		}
+
+
+        if (@event is InputEventKey eventKey)
+            if (eventKey.Pressed && eventKey.Keycode == Key.Escape)
+                GetTree().Quit();
+    }
+
+
+    void BornAnt(PlayerColony colony)
 	{
 		AntSimulator sim = ColonyManager.AntBorn(colony, this);
 		if (sim == null)
@@ -83,7 +131,7 @@ public partial class GameManager : Node
 
         sim.ShowSimDebugInfoEvent += AntSimulator_ShowDebugInfoEvent;
 
-        PackedScene ps = ResourceLoader.Load("res://ant.tscn") as PackedScene;
+        PackedScene ps = ResourceLoader.Load("res://Szenes/Models/ant.tscn") as PackedScene;
         Ant ant = ps.Instantiate() as Ant;
 
 		ant.SIM = sim;
@@ -110,6 +158,11 @@ public partial class GameManager : Node
 
         rand.Seed = GameSettings.GameSeed > 0 ? GameSettings.GameSeed : (ulong)DateTime.Now.Ticks;
 
+		//Camera positions
+		float posX = 0;
+		float posY = 0;
+		float posZ = 0;
+
         foreach (PlayerColony colony in ColonyManager.Colonys.Values)
         {
 			//Choosing Colors
@@ -118,8 +171,24 @@ public partial class GameManager : Node
 
 			//Coosing StartPosition
 			//TODO: Range of instance position of spawning
-			colony.StartPosition = new System.Numerics.Vector3(rand.RandfRange(-20, 20), 0, rand.RandfRange(-20, 20));
+			colony.StartPosition = new System.Numerics.Vector3(rand.RandfRange(-40, 40), 0, rand.RandfRange(-40, 40));
+
+			posX += colony.StartPosition.X;
+			posY += colony.StartPosition.Y;
+			posZ += colony.StartPosition.Z;
         }
+
+        //camera position
+        posX /= ColonyManager.Colonys.Count;
+		posY /= ColonyManager.Colonys.Count;
+		posZ /= ColonyManager.Colonys.Count;
+
+		posY += 10;
+		posZ += 20;
+
+		Camera3D camera = GetParent().GetNode<Camera3D>("Camera3D");
+        camera.Translate(new Vector3(posX, posY, posZ));
+
 
         GameState = GameStateEnum.RUNNING;
 	}

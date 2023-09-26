@@ -1,6 +1,11 @@
 res://ant_me!2.tscn
+res://Materials/mat_color_red.tres
 res://ant.tscn
+res://level_base.tscn
 res://Ant.cs
 res://GameManager.cs
-res://level_base.tscn
-res://Materials/mat_color_red.tres
+res://Scripts/Ant.cs
+res://Scripts/GameManager.cs
+res://Szenes/ant_me!2.tscn
+res://Szenes/Models/ant.tscn
+res://Szenes/Models/level_base.tscn
