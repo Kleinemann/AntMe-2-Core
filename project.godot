@@ -18,3 +18,7 @@ config/icon="res://icon.svg"
 [dotnet]
 
 project/assembly_name="AntMe!2"
+
+[filesystem]
+
+import/fbx/enabled=false

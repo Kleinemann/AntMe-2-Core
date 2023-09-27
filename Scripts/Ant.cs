@@ -1,7 +1,5 @@
 using AntMe_2_Lib.Simulator;
 using Godot;
-using Godot.Collections;
-using System;
 using static AntMe_2_Lib.GameObject.InsectCore;
 
 public partial class Ant: RigidBody3D

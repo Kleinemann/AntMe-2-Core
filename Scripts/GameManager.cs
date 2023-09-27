@@ -5,15 +5,16 @@ using AntMe_2_Lib.Simulator;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class GameManager : Node
 {
 
 	RandomNumberGenerator rand = new RandomNumberGenerator();
 
-    public enum GameStateEnum { NONE, RUNNING, PAUSE, END };
+    public enum GameStateEnum { NONE, LOADING, RUNNING, PAUSE, END };
 
-	public static GameStateEnum GameState = GameStateEnum.NONE;
+	public static GameStateEnum GameState = GameStateEnum.LOADING;
     List<Ant> Ants = new List<Ant>();
 
 	public List<BaseMaterial3D> Colors = new List<BaseMaterial3D>()
@@ -40,14 +41,34 @@ public partial class GameManager : Node
         ColonyManager.LoadingUserAntsByDll();
  
 		PrintDebug("Alles geladen");
-
-		StartSimulation();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (GameState == GameStateEnum.RUNNING)
+		if(GameState == GameStateEnum.LOADING) 
+		{
+            StartSimulation();
+
+			//INI HILLS
+			foreach (PlayerColony colony in ColonyManager.Colonys.Values)
+			{
+				PackedScene ps = ResourceLoader.Load("res://Szenes/Models/ant_hill.tscn") as PackedScene;
+				MeshInstance3D hill = ps.Instantiate() as MeshInstance3D;
+
+				Vector3 offset = new Vector3(-9.373f, -3, 9.437f);
+
+				//Material
+				hill.MaterialOverlay = PlayerColor[colony.Guid];
+
+				Node parent = GetParent();
+				hill.Position = colony.StartPosition.ToGodot() + offset;
+				parent.AddChild(hill);
+			}
+            GameState = GameStateEnum.RUNNING;
+        }
+
+        if (GameState == GameStateEnum.RUNNING)
 		{
 			UpdateAnts(delta);
 
@@ -60,7 +81,7 @@ public partial class GameManager : Node
 				foreach (PlayerColony colony in ColonyManager.Colonys.Values)
 				{
 					BornAnt(colony);
-					colony.DoTicks();
+                    colony.DoTicks();
 				}
 
 				if (RoundCounter >= GameSettings.Rounds)
@@ -169,7 +190,7 @@ public partial class GameManager : Node
 		Node parent = GetParent();
 		parent.AddChild(ant);
 
-		ant.Position = (colony.StartPosition + new System.Numerics.Vector3(0, 2, 0)).ToGodot();
+		ant.Position = colony.StartPosition.ToGodot() + new Vector3(0,2,0);
 		ant.RotateY(rand.RandfRange(0, 360));
 
         ant.SIM.Init();
@@ -197,9 +218,9 @@ public partial class GameManager : Node
 
 			//Coosing StartPosition
 			//TODO: Range of instance position of spawning
-			colony.StartPosition = new System.Numerics.Vector3(rand.RandfRange(-40, 40), 0, rand.RandfRange(-40, 40));
+			colony.StartPosition = new System.Numerics.Vector3(rand.RandfRange(-40, 40), 2, rand.RandfRange(-40, 40));
 
-			posX += colony.StartPosition.X;
+            posX += colony.StartPosition.X;
 			posY += colony.StartPosition.Y;
 			posZ += colony.StartPosition.Z;
         }

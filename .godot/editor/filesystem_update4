@@ -1,6 +1,7 @@
-res://Szenes/ant_me!2.tscn
 res://Materials/mat_color_red.tres
-res://Szenes/Models/ant.tscn
+res://Szenes/Models/ant_hill.tscn
 res://Szenes/Models/level_base.tscn
+res://Szenes/ant_me!2.tscn
+res://Szenes/Models/ant.tscn
 res://Scripts/Ant.cs
 res://Scripts/GameManager.cs

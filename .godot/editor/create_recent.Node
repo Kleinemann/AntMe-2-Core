@@ -1,8 +1,8 @@
-RigidBody3D
-Area3D
-MeshInstance3D
 CollisionShape3D
+MeshInstance3D
+RigidBody3D
 StaticBody3D
+Area3D
 WorldEnvironment
 Node
 DirectionalLight3D
