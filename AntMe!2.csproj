@@ -5,6 +5,6 @@
     <RootNamespace>AntMe2</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AntMe!2-Lib\AntMe!2_Lib.csproj" />
+    <ProjectReference Include="..\AntMe!2_Lib\AntMe!2_Lib.csproj" />
   </ItemGroup>
 </Project>

@@ -1,21 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4u307swoq0la"]
+[gd_scene load_steps=6 format=3 uid="uid://c4u307swoq0la"]
 
 [ext_resource type="Script" path="res://Scripts/Ant.cs" id="1_bd70d"]
-[ext_resource type="ArrayMesh" uid="uid://cc7pcdt120kaj" path="res://ANT_BLK.OBJ" id="2_0f8y8"]
-[ext_resource type="Material" uid="uid://k6pp8f6an56i" path="res://Materials/mat_color_red.tres" id="3_c2yos"]
+[ext_resource type="ArrayMesh" uid="uid://we6yvudx2oq5" path="res://ant.obj" id="2_jxhsp"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d2nf6"]
-points = PackedVector3Array(-0.00266152, 0.00283308, -0.00129524, 0.0043, 0.00024292, -0.00145549, 0.0043, -8.09524e-05, -0.00145549, 0.000575652, 0.00315695, 0.00518095, -0.00379462, 8.09841e-05, 0.00194235, -0.00379462, -8.09524e-05, -0.00404698, 0.00235635, 0.00283308, -0.00275175, 0.00381367, 8.09841e-05, 0.00194235, 0.00025227, 0.00186228, -0.00518095, -0.000718715, 0.00412857, 0.00275175, 0.00381367, -8.09524e-05, -0.00404698, 0.00251846, 0.00283308, 0.00113295, -0.0023373, 0.00283308, -0.00275175, 0.000737762, 0.00412857, 0.00210463, -0.000556604, 0.00299502, 0.00518095, -7.11117e-05, 0.00283308, -0.0038847, -0.00428095, -8.09524e-05, -0.00145549, -0.00249941, 0.00283308, 0.00113295, -0.00428095, 0.00024292, -0.00161879, -0.000394493, 0.00202381, -0.00501867, 0.00284268, 0.00267073, -0.00113295, -0.000556604, 0.00412857, 0.00194235, -0.000233222, 0.00153841, -0.00518095, -0.000556604, 0.00331889, 0.00501867, -0.00379462, 0.000404857, 0.00178006, 0.00381367, 0.000404857, 0.00178006, 0.000737762, 0.00412857, 0.00275175, -0.00395673, 8.09841e-05, -0.0038847, 0.00381367, 8.09841e-05, -0.00404698, 0.000413541, 0.00234727, -0.00469511, 0.000575652, 0.00331889, 0.00501867, -0.00282364, 0.00267073, -0.00129524)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dnux"]
+size = Vector3(0.47281, 0.309464, 0.827099)
+
+[sub_resource type="TorusMesh" id="TorusMesh_vcos4"]
+inner_radius = 0.75
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t6lpr"]
+points = PackedVector3Array(-0.182544, -0.0436608, -0.974332, -0.182328, 0.047575, -0.973176, -0.974332, -0.0436608, 0.182544, 0.92061, -0.140845, 0.317411, 0.888789, 0.144813, -0.380853, -0.92061, 0.144813, -0.28559, -0.507937, -0.140845, 0.825347, 0.317411, -0.140845, -0.92061, -0.825347, -0.140845, -0.507937, -0.634821, 0.144813, 0.730084, 0.825347, 0.144813, 0.507937, 0.317411, -0.140845, 0.92061, 0.28559, 0.144813, -0.92061, 0.825347, -0.140845, -0.507937, -0.507937, 0.144813, -0.825347, -0.126885, 0.144813, 0.952232, -0.92061, -0.140845, 0.317411, -0.507937, -0.140845, -0.825347, 0.603379, 0.0472181, -0.784469, 0.973176, 0.047575, -0.182328, -0.888789, 0.144813, 0.380853, 0.604103, -0.0433041, 0.78541, 0.507937, 0.144813, 0.825347, -0.182546, -0.0436613, 0.974342, 0.952232, 0.144813, 0.126885, -0.78541, -0.0433041, 0.604103, -0.952232, -0.140845, -0.158705, -0.784469, 0.0472181, -0.603379, 0.952232, -0.140845, -0.158705, 0.182328, 0.047575, 0.973176, -0.454781, 0.0474426, 0.879356, 0.825347, -0.140845, 0.507937)
 
 [node name="Ant" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("1_bd70d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-mesh = ExtResource("2_0f8y8")
-surface_material_override/0 = ExtResource("3_c2yos")
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152503, 0.0460899)
+shape = SubResource("BoxShape3D_2dnux")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_d2nf6")
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_jxhsp")
+
+[node name="AreaCollision" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="ShapeCollision" type="CollisionShape3D" parent="AreaCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152503, 0.0460899)
+shape = SubResource("BoxShape3D_2dnux")
+
+[node name="AreaView" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="MeshSignalRing" type="MeshInstance3D" parent="AreaView"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+mesh = SubResource("TorusMesh_vcos4")
+
+[node name="CollisionView" type="CollisionShape3D" parent="AreaView"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.326014, 0)
+shape = SubResource("ConvexPolygonShape3D_t6lpr")
+
+[connection signal="body_entered" from="AreaCollision" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="AreaView" to="." method="_on_area_visible_body_3_entered"]

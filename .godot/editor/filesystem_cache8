@@ -1,22 +1,26 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1695801387
-0206 059x2 glc01.png::CompressedTexture2D::1546980965180401818::1695797604::1695797604::1::::<><>::
-icon.svg::CompressedTexture2D::2426449680786551817::1695797604::1695797604::1::::<><>::
-the felled tree - puck.obj::Mesh::5019074692167065277::1695801387::1695801390::1::::<><>::
-::res://Materials/::1695798335
-mat_color_black.tres::StandardMaterial3D::6333693573294492316::1695797604::0::1::::<><>::
-mat_color_blue.tres::StandardMaterial3D::3462833671198665932::1695797604::0::1::::<><>::
-mat_color_red.tres::StandardMaterial3D::766823430959868966::1695798335::0::1::::<><>::
-mat_color_yellow.tres::StandardMaterial3D::1570252885788377173::1695797604::0::1::::<><>::
-::res://Properties/::1695797604
-launchSettings.json::JSON::-1::1695797604::0::1::::<><>::
-::res://Scripts/::1695798420
-Ant.cs::CSharpScript::-1::1695798420::0::1::::<><>::
-GameManager.cs::CSharpScript::-1::1695797604::0::1::::<><>::
-::res://Scripts/Helper/::1695797604
-GameExtensionMethods.cs::CSharpScript::-1::1695797604::0::1::::<><>::
-::res://Szenes/::1695801360
-ant_me!2.tscn::PackedScene::5733996168222687575::1695801360::0::1::::<><>::res://Scripts/GameManager.cs<>uid://ccvyw405cik6v::::res://Szenes/Models/level_base.tscn
-::res://Szenes/Models/::1695801360
-ant.tscn::PackedScene::6851351818188050426::1695801360::0::1::::<><>::res://Scripts/Ant.cs<>uid://cc7pcdt120kaj::::res://ANT_BLK.OBJ<>uid://k6pp8f6an56i::::res://Materials/mat_color_red.tres
-level_base.tscn::PackedScene::4958069045953152059::1695801360::0::1::::<><>::uid://wbmsymb66ghm::::res://0206 059x2 glc01.png
+::res://::1696573135
+0206 059x2 glc01.png::CompressedTexture2D::1546980965180401818::1695626475::1695626544::1::::<><>::
+ant.obj::Mesh::1554338290936990750::1696418135::1696418152::1::::<><>::
+ANT_BLK.OBJ::Mesh::1733756624659848347::1695493462::1696414497::1::::<><>::
+compas.png::CompressedTexture2D::9007575285649134077::1695916843::1695921751::1::::<><>::
+icon.svg::CompressedTexture2D::2426449680786551817::1695493462::1695493462::1::::<><>::
+::res://Materials/::1696506429
+mat_color_black.tres::StandardMaterial3D::6333693573294492316::1695631473::0::1::::<><>::
+mat_color_blue.tres::StandardMaterial3D::3462833671198665932::1696506429::0::1::::<><>::
+mat_color_red.tres::StandardMaterial3D::766823430959868966::1696168338::0::1::::<><>::
+mat_color_yellow.tres::StandardMaterial3D::1570252885788377173::1695631396::0::1::::<><>::
+::res://Properties/::1695493464
+launchSettings.json::JSON::-1::1695493464::0::1::::<><>::
+::res://Scripts/::1696520696
+Ant.cs::CSharpScript::-1::1696520696::0::1::::<><>::
+GameManager.cs::CSharpScript::-1::1696519043::0::1::::<><>::
+::res://Scripts/Helper/::1696414425
+GameExtensionMethods.cs::CSharpScript::-1::1695733228::0::1::::<><>::
+::res://Szenes/::1696520983
+ant_me!2.tscn::PackedScene::5733996168222687575::1696520983::0::1::::<><>::res://Scripts/GameManager.cs<>uid://ccvyw405cik6v::::res://Szenes/Models/level_base.tscn
+::res://Szenes/Models/::1696520983
+ant.tscn::PackedScene::6851351818188050426::1696520983::0::1::::<><>::res://Scripts/Ant.cs<>uid://we6yvudx2oq5::::res://ant.obj
+ant_hill.tscn::PackedScene::1347084332339351131::1695814454::0::1::::<><>::uid://cdrjorqipvfl2
+level_base.tscn::PackedScene::4958069045953152059::1696520983::0::1::::<><>::uid://wbmsymb66ghm::::res://0206 059x2 glc01.png
+sugar.tscn::PackedScene::3981781867285041831::1696520983::0::1::::<><>::

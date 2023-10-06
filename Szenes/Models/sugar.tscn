@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwy2mov45ssap"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_22jjs"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Gradient" id="Gradient_iybjl"]
+offsets = PackedFloat32Array(0, 0.172414, 0.472906)
+colors = PackedColorArray(0.262932, 0.262932, 0.262932, 1, 0.37931, 0.37931, 0.37931, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5uhye"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o37xr"]
+color_ramp = SubResource("Gradient_iybjl")
+noise = SubResource("FastNoiseLite_5uhye")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg87q"]
+albedo_texture = SubResource("NoiseTexture2D_o37xr")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wjfea"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Mesh" type="MeshInstance3D"]
+layers = 4
+mesh = SubResource("BoxMesh_22jjs")
+surface_material_override/0 = SubResource("StandardMaterial3D_eg87q")
+
+[node name="Body" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("ConcavePolygonShape3D_wjfea")
